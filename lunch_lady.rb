@@ -49,23 +49,32 @@ class Restaurant
   def initialize
     @main_dishes = [ Dish.new('Spaghetti', 12), Dish.new('Chicken', 20) ]
     @side_dishes= [ Dish.new('Fries', 4), Dish.new('Rice', 3) ]
-    @checkout_cost = 0
+    @checkout_cost = []
+    @ordered_items = []
     main_dish_menu
+  end
+
+  def main_dish_list
+    @main_dishes.each_with_index do |dish, index|
+      puts "#{index + 1} #{dish.name} >> Price: #{dish.price}"
+    end
   end
 
   def main_dish_menu
     puts "Select a main dish"
-    @main_dishes.each_with_index do |dish, index|
-      puts "#{index + 1} #{dish.name} >> Price: #{dish.price}"
-    end
-
-    case gets.strip
+    main_dish_list
+    choice = gets.to_i
+    case choice
       when "1"
-      puts "Spaghetti selected"
-      puts
+        puts "Your main dish is #{@main_dishes[choice - 1].name}"
+        @checkout_cost << @main_dishes[choice - 1].price
+        @ordered_items << @main_dishes[choice - 1].name
+        puts
       when "2"
-      puts "Chicken selected"
-      puts
+        puts "Your main dish is #{@main_dishes[choice - 1].name}"
+        @checkout_cost << @main_dishes[choice - 1].price
+        @ordered_items << @main_dishes[choice - 1].name
+        puts
       else
       "Enter a valid option"
       puts
@@ -99,8 +108,17 @@ class Restaurant
       when "2"
       puts "Rice selected"
     end
+    puts "Your main dish is #{@main_dishes[choice - 1].price}"
+    end
+  # def print_order
+  #   puts "Your selected items"
+  #   main_dish_selected = @main_dishes[get.to_i - 1]
+  #     puts "#{main_dish_selected[:dish.name]}
+  #     end
   end
-end
+  
+
+
 
 Restaurant.new
 
