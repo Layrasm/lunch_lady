@@ -87,13 +87,15 @@ class Restaurant
     @side_dishes.each_with_index do |dish, index|
       puts "#{index + 1} #{dish.name} >> Price: #{dish.price}"
     end
-    case gets.chomp
+    case choice
       when "1"
-      puts "Fries Selected"
-      puts
+        puts "Your side dish is #{@side_dishes[choice - 1].name}"
+        @checkout_cost << @side_dishes[choice - 1].price
+        @ordered_items << @side_dishes[choice - 1].name
       when "2"
-      puts "Rice selected"
-      puts
+        puts "Your side dish is #{@side_dishes[choice - 1].name}"
+        @checkout_cost << @side_dishes[choice - 1].price
+        @ordered_items << @side_dishes[choice - 1].name
     end
     side_dish_menu_two
   end
@@ -104,9 +106,13 @@ class Restaurant
     end
     case gets.chomp
       when "1"
-      puts "Fries Selected"
+        puts "Your second side dish is #{@side_dishes[choice - 1].name}"
+        @checkout_cost << @side_dishes[choice - 1].price
+        @ordered_items << @side_dishes[choice - 1].name
       when "2"
-      puts "Rice selected"
+        puts "Your second side dish is #{@side_dishes[choice - 1].name}"
+        @checkout_cost << @side_dishes[choice - 1].price
+        @ordered_items << @side_dishes[choice - 1].name
     end
     puts "Your main dish is #{@main_dishes[choice - 1].price}"
     end
